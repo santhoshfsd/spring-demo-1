@@ -1,8 +1,8 @@
 package com.mcb.administration.controller;
 
 import com.mcb.administration.configuration.jwt.JwtUtil;
-import com.mcb.administration.model.JwtRequest;
-import com.mcb.administration.model.JwtResponse;
+import com.mcb.administration.dto.JwtRequest;
+import com.mcb.administration.dto.JwtResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;

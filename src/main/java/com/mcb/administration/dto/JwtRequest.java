@@ -1,4 +1,4 @@
-package com.mcb.administration.model;
+package com.mcb.administration.dto;
 
 import java.io.Serializable;
 

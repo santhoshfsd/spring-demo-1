@@ -1,7 +1,6 @@
 package com.mcb.administration.controller;
 
-import com.mcb.administration.model.HttpResponse;
-import com.mcb.administration.model.JwtResponse;
+import com.mcb.administration.dto.HttpResponse;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

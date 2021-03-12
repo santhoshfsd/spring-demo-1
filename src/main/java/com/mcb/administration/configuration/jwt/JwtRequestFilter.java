@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.web.util.UrlPathHelper;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -33,6 +34,11 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         final String requestTokenHeader = request.getHeader("Authorization");
         String username = null;
         String jwtToken = null;
+
+        String resourcePath = new UrlPathHelper().getPathWithinApplication(request);
+        if ("/swagger-ui.html".equalsIgnoreCase(resourcePath)) {
+            chain.doFilter(request, response);
+        }
 
         // JWT Token is in the form "Bearer token". Remove Bearer word and get
         // only the Token
