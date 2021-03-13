@@ -4,6 +4,7 @@ import com.mcb.administration.entity.Student;
 import com.mcb.administration.service.StudentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,8 +19,9 @@ public class StudentController {
         this.service = service;
     }
 
-    public ResponseEntity create(Student student) {
-
+    @PostMapping
+    public ResponseEntity create(@RequestBody Student student) {
+        service.create(student);
         return new ResponseEntity(student, HttpStatus.CREATED);
     }
 }

@@ -3,6 +3,7 @@ package com.mcb.administration.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="student")
@@ -17,5 +18,9 @@ public class Student {
     private String firstName;
     private String lastName;
     private long phoneNumber;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="id")
+    private List<Course> answers;
 
 }
