@@ -57,7 +57,7 @@ public class StudentController {
             responseContainer = "Student"
     )
     @GetMapping(value = "/{id}")
-    public Student  findById(@PathVariable String id){
+    public Student  findById(@PathVariable Long id){
         logger.info("Find Student by Id -> {}");
         Student std =  service.findById(id);
         return std;
@@ -89,9 +89,9 @@ public class StudentController {
             responseContainer = "int"
     )
     @PostMapping(value = "/create")
-    public int  createUsingTemplate(@RequestBody Student student){
+    public Student  createUsingTemplate(@RequestBody Student student){
         logger.info("Create Student -> {}");
-         int id = service.createUsingTemplate(student);
+        Student id = service.createUsingJpa(student);
         return id;
     }
 

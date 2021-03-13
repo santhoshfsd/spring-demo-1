@@ -8,6 +8,7 @@ import java.util.List;
 @Entity
 @Table(name="student")
 @Data
+@NamedQuery(name="find_all_student", query = "select s from Student s")
 public class Student {
 
     @Id

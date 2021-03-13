@@ -1,10 +1,12 @@
 package com.mcb.administration.service;
 
 import com.mcb.administration.dao.StudentDao;
+import com.mcb.administration.dao.StudentJpaRepository;
 import com.mcb.administration.dao.StudentRepository;
 import com.mcb.administration.entity.Student;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Component
@@ -12,9 +14,12 @@ public class StudentService {
 
     StudentRepository repository;
     StudentDao studentDao;
-    public StudentService(StudentRepository repository, StudentDao studentDao) {
-    this.repository = repository;
-    this.studentDao = studentDao;
+    StudentJpaRepository jpaRepository;
+
+    public StudentService(StudentRepository repository, StudentDao studentDao, StudentJpaRepository studentJpaRepository) {
+        this.repository = repository;
+        this.studentDao = studentDao;
+        this.jpaRepository = studentJpaRepository;
     }
 
     public Student create(Student student) {
@@ -23,11 +28,11 @@ public class StudentService {
     }
 
     public List<Student> findAllFromTemplate() {
-     return studentDao.findAll();
+     return jpaRepository.findAll();
     }
 
-    public  Student findById(String id) {
-        return studentDao.findById(id);
+    public  Student findById(Long id) {
+        return jpaRepository.findById(id);
     }
 
     public int deleteById(String id) {
@@ -41,6 +46,12 @@ public class StudentService {
 
     public int updateUsingTemplate(String id, Student student) {
         int s = studentDao.update(id,student);
+        return s;
+    }
+
+    @Transactional
+    public Student createUsingJpa(Student student) {
+        Student s = jpaRepository.insertOrUpdate(student);
         return s;
     }
 }
