@@ -35,10 +35,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         String username = null;
         String jwtToken = null;
 
-        String resourcePath = new UrlPathHelper().getPathWithinApplication(request);
-        if ("/swagger-ui.html".equalsIgnoreCase(resourcePath)) {
-            chain.doFilter(request, response);
-        }
+//        String resourcePath = new UrlPathHelper().getPathWithinApplication(request);
+//        if ("/swagger-ui.html".equalsIgnoreCase(resourcePath)) {
+//            chain.doFilter(request, response);
+//        }
 
         // JWT Token is in the form "Bearer token". Remove Bearer word and get
         // only the Token
