@@ -3,7 +3,9 @@ package com.mcb.administration.service;
 import com.mcb.administration.dao.StudentDao;
 import com.mcb.administration.dao.StudentJpaRepository;
 import com.mcb.administration.dao.StudentRepository;
+import com.mcb.administration.dto.StudentDto;
 import com.mcb.administration.entity.Student;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
@@ -53,5 +55,13 @@ public class StudentService {
     public Student createUsingJpa(Student student) {
         Student s = jpaRepository.insertOrUpdate(student);
         return s;
+    }
+
+    public Student createStudentWithPassport(StudentDto studentDao) {
+        ModelMapper modelMapper = new ModelMapper();
+        Student student = modelMapper.map(studentDao, Student.class);
+        student = jpaRepository.saveStudentWithPassport(student);
+        student.getId();
+        return student;
     }
 }

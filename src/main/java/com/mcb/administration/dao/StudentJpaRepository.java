@@ -1,9 +1,11 @@
 package com.mcb.administration.dao;
 
+import com.mcb.administration.entity.Passport;
 import com.mcb.administration.entity.Student;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,6 +13,7 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
+@Transactional
 public class StudentJpaRepository {
 
     @PersistenceContext
@@ -40,8 +43,23 @@ public class StudentJpaRepository {
 //                });
 //    }
 //
+
     public Student insertOrUpdate(Student sd){
         return entityManager.merge(sd);
     }
+
+    public Student saveStudentWithPassport(Student sd) {
+//        Passport passport =  sd.getPassport();
+//        entityManager.persist(passport);
+//        Student student = new Student();
+//        student.setFirstName("mike");
+//        student.setLastName("D");
+//        student.setPhoneNumber(461489461);
+//        student.setPassport(passport);
+
+        return entityManager.merge(sd);
+    }
+
+
 }
 

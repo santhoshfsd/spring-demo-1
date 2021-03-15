@@ -19,4 +19,7 @@ public class Student {
     private String firstName;
     private String lastName;
     private long phoneNumber;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Passport passport;
 }

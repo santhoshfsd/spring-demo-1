@@ -1,6 +1,7 @@
 package com.mcb.administration.controller;
 
 import com.mcb.administration.dto.HttpResponse;
+import com.mcb.administration.dto.StudentDto;
 import com.mcb.administration.entity.Student;
 import com.mcb.administration.service.StudentService;
 import io.swagger.annotations.ApiImplicitParam;
@@ -25,11 +26,26 @@ public class StudentController {
         this.service = service;
     }
 
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="Authorization", value = "Auth Token", required = true, dataType = "string",
+                    paramType = "header")
+    })
+    @ApiOperation(
+            value = "Create Student With Passport",
+            response = HttpResponse.class,
+            responseContainer = "Student"
+    )
     @PostMapping
-    public ResponseEntity create(@RequestBody Student student) {
-        service.create(student);
+    public ResponseEntity create(@RequestBody StudentDto student) {
+        service.createStudentWithPassport(student);
         return new ResponseEntity(student, HttpStatus.CREATED);
     }
+
+//    @PostMapping
+//    public ResponseEntity create(@RequestBody Student student) {
+//        service.create(student);
+//        return new ResponseEntity(student, HttpStatus.CREATED);
+//    }
 
     @ApiImplicitParams({
             @ApiImplicitParam(name="Authorization", value = "Auth Token", required = true, dataType = "string",
