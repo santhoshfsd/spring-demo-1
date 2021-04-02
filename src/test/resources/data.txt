@@ -1,0 +1,7 @@
+
+CREATE TABLE tutorials_tbl (
+   id INT PRIMARY KEY,
+   title VARCHAR(50) ,
+   description VARCHAR(20) ,
+);
+INSERT INTO evaluation (id, name, description) VALUES ("4001",'E1200031','ttt');
